@@ -1,4 +1,4 @@
-🕯️ ShrineTool v1.1 — The Ultimate Windows 11 Ritual Suite
+🕯️ ShrineTool v1.0 — The Ultimate Windows 11 Ritual Suite
 
 “Every tweak is a ritual. Every install, a ceremony. This is not automation—it’s intention.”
 — Mohammad, Creator of ShrineTool
