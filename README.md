@@ -1,131 +1,188 @@
-# 🕯️ ShrineTool v1.0 — The Ultimate Windows 11 Ritual Suite
+🕯️ ShrineTool v1.1 — The Ultimate Windows 11 Ritual Suite
 
-> _“Every tweak is a ritual. Every install, a ceremony. This is not automation—it’s intention.”_  
-> — Mohammad, Creator of ShrineTool
+“Every tweak is a ritual. Every install, a ceremony. This is not automation—it’s intention.”
+— Mohammad, Creator of ShrineTool
 
----
+⚡ Overview
 
-## ⚡ Overview
-
-**ShrineTool v1.0** is a handcrafted C++ command-line utility designed to optimize and personalize Windows 11.  
+ShrineTool v1.1 is a handcrafted C++ command-line utility designed to optimize and personalize Windows 11.
 Inspired by ChrisTitusTool, but reborn with manual control, stylized logic, and shrine-grade clarity.
 
----
+Unlike generic “all-in-one” scripts, ShrineTool focuses on transparency and user choice — every action is visible, intentional, and ceremonial.
 
-## 🧰 Features
+🧰 Features
+🔧 Tweaks Menu
 
-- 🔧 **Tweaks Menu**  
-  - Disable GPS tracking  
-  - Disable telemetry  
-  - Remove Bing from Windows search  
-  - Explorer restart prompt for full ritual effect
+Disable GPS tracking
 
-- 📦 **App Installer**  
-  - Install Chrome, VS Code, VLC, 7-Zip via `winget`  
-  - Accepts agreements and installs silently
+Disable telemetry
 
-- 🔐 **KMS Activation Ritual**  
-  - Activates Windows 11 Pro using sacred PowerShell invocations  
-  - Displays activation status with `slmgr /xpr`
+Remove Bing from Windows search
 
-- 🧾 **About Section**  
-  - ASCII-branded homage to the creator  
-  - Purpose, gratitude, and versioning
+Optional Explorer restart for full ritual effect
 
----
+📦 App Installer
 
-## 🖥️ Usage
+Install Google Chrome, Visual Studio Code, VLC Media Player, 7-Zip via winget
 
-> ⚠️ **Run as Administrator**  
-> ShrineTool performs system-level rituals that require elevated permissions.
+Automatically accepts agreements and installs silently
 
-1. Compile the source code using a C++ compiler (MSVC recommended).
-2. Run the executable:
-   ```bash
-   ./ShrineTool.exe
+🔍 License Status Ritual
 
+Check your Windows activation status (slmgr /xpr)
 
-   🛡️ Is ShrineTool Safe?
-Yes. ShrineTool is open-source, transparent, and built with care. Every tweak is visible in the source — no obfuscation, no hidden binaries.
+No piracy, no cracks — pure visibility
+
+🧾 About Section
+
+ASCII-branded homage to the creator
+
+Purpose, gratitude, and versioning
+
+🖥️ Usage
+
+⚠️ Run as Administrator
+ShrineTool performs system-level rituals that require elevated permissions.
+
+Compile the source code using a C++ compiler (MSVC recommended).
+
+Run the executable:
+
+./ShrineTool.exe
+
+🛡️ Is ShrineTool Safe?
+
+✅ Yes. ShrineTool is open-source, transparent, and built with care. Every tweak is visible in the source — no obfuscation, no hidden binaries.
 
 ⚠️ Why SmartScreen or Defender Might Warn You
-Windows flags unsigned tools by default, especially those that:
+Unsigned tools that:
 
 Modify system settings (telemetry, Bing, GPS)
 
-Use KMS activation logic
+Use PowerShell commands
 
-Are new and haven’t built reputation yet
+Are new and not yet reputation-established
 
-These are heuristic triggers, not actual threats.
+…will often trigger Windows security heuristics. These are false positives, not real threats.
 
 ✅ How to Verify ShrineTool
+
 🔍 Inspect the source: GitHub Repository
 
 🧪 Scan the compiled .exe with VirusTotal
 
 🧵 Compile it yourself using Visual Studio or g++
 
-“If you doubt the ritual, read the scrolls. If you trust the shrine, run the ceremony.”
+✨ Closing Words
 
-you can sae the source code this is the source code c++:
+“If you doubt the ritual, read the scrolls.
+If you trust the shrine, run the ceremony.”
 
-<pre lang="markdown">
+## 📜 Source Code (C++)
+
+```cpp
 #include <iostream>
 #include <windows.h>
 
 using namespace std;
 
 int main() {
-    int choose = 0, tweaks = 0, install_app = 0, kms = 0, About = 0;
+    int choose = 0;
+    int tweaks = 0;
+    int install_app = 0;
+    int About = 0;
 
     cout << "==========================================" << endl;
-    cout << "The Ultimate Windows 11 Tool" << endl;
+    cout << "        ShrineTool v1.1 — Windows 11      " << endl;
     cout << "==========================================" << endl;
-    cout << "[1] tweaks\n[2] install app\n[3] kms activate pro edition\n[4] About" << endl;
-    cout << "please run that as administrator choose from 1 to 4:" << endl;
+    cout << endl;
+    cout << "[1] Tweaks" << endl;
+    cout << "[2] Install Apps" << endl;
+    cout << "[3] Check License Status" << endl;
+    cout << "==================" << endl;
+    cout << "[4] About" << endl;
+    cout << "==================" << endl;
+    cout << endl;
+    cout << "Please run as Administrator. Choose from 1 to 4:" << endl;
     cin >> choose;
 
     switch (choose) {
     case 1:
-        cout << "[1]disable GPS tracking\n[2] disable telemetry\n[3] disable Bing from search" << endl;
+        cout << "=================" << endl;
+        cout << "Welcome to Tweaks" << endl;
+        cout << "=================" << endl;
+        cout << endl;
+        cout << "[1] Disable GPS tracking" << endl;
+        cout << "[2] Disable telemetry" << endl;
+        cout << "[3] Disable Bing from search" << endl;
+        cout << endl;
+        cout << "Choose from 1 to 3:" << endl;
         cin >> tweaks;
 
         if (tweaks == 1) {
+            cout << "Disabling GPS tracking..." << endl;
             system("powershell -Command \"Stop-Service -Name lfsvc -Force\"");
             system("powershell -Command \"Set-Service -Name lfsvc -StartupType Disabled\"");
-        } else if (tweaks == 2) {
+            cout << "Success" << endl;
+        }
+        else if (tweaks == 2) {
+            cout << "Disabling Telemetry..." << endl;
             system("powershell -Command \"Stop-Service -Name diagtrack -Force\"");
             system("powershell -Command \"Set-Service -Name diagtrack -StartupType Disabled\"");
-        } else if (tweaks == 3) {
+            cout << "Success" << endl;
+        }
+        else if (tweaks == 3) {
+            cout << "Disabling Bing search..." << endl;
             system("powershell -Command \"New-Item -Path HKCU:\\Software\\Policies\\Microsoft\\Windows\\Explorer -Force\"");
             system("powershell -Command \"New-ItemProperty -Path 'HKCU:\\Software\\Policies\\Microsoft\\Windows\\Explorer' -Name 'DisableSearchBoxSuggestions' -Value 1 -PropertyType DWord -Force\"");
             char choose1;
-            cout << "Restart Explorer? (y/n): "; cin >> choose1;
+            cout << "A restart of Explorer is recommended. Restart now? (y/n): ";
+            cin >> choose1;
+
             if (choose1 == 'y' || choose1 == 'Y') {
+                cout << "Restarting Explorer..." << endl;
                 system("powershell -Command \"Stop-Process -Name explorer -Force\"");
+            }
+            else {
+                cout << "Restart aborted. Please restart Explorer later for changes to take effect." << endl;
             }
         }
         break;
 
     case 2:
-        cout << "[1] Chrome\n[2] VS Code\n[3] 7-Zip\n[4] VLC" << endl;
+        cout << "==================" << endl;
+        cout << "Install Apps" << endl;
+        cout << "==================" << endl;
+        cout << endl;
+        cout << "[1] Google Chrome" << endl;
+        cout << "[2] Visual Studio Code" << endl;
+        cout << "[3] 7-Zip" << endl;
+        cout << "[4] VLC Media Player" << endl;
+        cout << endl;
+        cout << "Choose an app to install (1-4): " << endl;
         cin >> install_app;
 
-        if (install_app == 1)
+        if (install_app == 1) {
+            cout << "Installing Google Chrome..." << endl;
             system("powershell -Command \"winget install --id Google.Chrome -e --accept-package-agreements --accept-source-agreements\"");
-        else if (install_app == 2)
+        }
+        else if (install_app == 2) {
+            cout << "Installing Visual Studio Code..." << endl;
             system("powershell -Command \"winget install --id Microsoft.VisualStudioCode -e --accept-package-agreements --accept-source-agreements\"");
-        else if (install_app == 3)
+        }
+        else if (install_app == 3) {
+            cout << "Installing 7-Zip..." << endl;
             system("powershell -Command \"winget install --id 7zip.7zip -e --accept-package-agreements --accept-source-agreements\"");
-        else if (install_app == 4)
+        }
+        else if (install_app == 4) {
+            cout << "Installing VLC Media Player..." << endl;
             system("powershell -Command \"winget install --id VideoLAN.VLC -e --accept-package-agreements --accept-source-agreements\"");
+        }
+        cout << "Success." << endl;
         break;
 
     case 3:
-        system("powershell -Command \"slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX\"");
-        system("powershell -Command \"slmgr /skms kms8.msguides.com\"");
-        system("powershell -Command \"slmgr /ato\"");
+        cout << "Checking Windows license status..." << endl;
         system("powershell -Command \"slmgr /xpr\"");
         break;
 
@@ -137,10 +194,16 @@ int main() {
   |  __/ (_) | | |_| | |_) | | | | \__ \
   |_|   \___/|_|\__,_|_.__/|_|_| |_|___/
 )" << endl;
-        cout << "This Tool Made by Mohammad\nPurpose: To make Windows 11 better\nThanks to everyone using ShrineTool\nVersion 1.0" << endl;
-        int i; cin >> i;
+        int i;
+        cout << "This Tool Made by Mohammad" << endl;
+        cout << "Purpose: To make Windows 11 better" << endl;
+        cout << "Thanks to everyone using ShrineTool" << endl;
+        cout << "Version 1.1 (Safe Edition)" << endl;
+        cin >> i;
         break;
     }
 
     return 0;
 }
+
+
