@@ -43,3 +43,27 @@ Inspired by ChrisTitusTool, but reborn with manual control, stylized logic, and 
 2. Run the executable:
    ```bash
    ./ShrineTool.exe
+
+
+   🛡️ Is ShrineTool Safe?
+Yes. ShrineTool is open-source, transparent, and built with care. Every tweak is visible in the source — no obfuscation, no hidden binaries.
+
+⚠️ Why SmartScreen or Defender Might Warn You
+Windows flags unsigned tools by default, especially those that:
+
+Modify system settings (telemetry, Bing, GPS)
+
+Use KMS activation logic
+
+Are new and haven’t built reputation yet
+
+These are heuristic triggers, not actual threats.
+
+✅ How to Verify ShrineTool
+🔍 Inspect the source: GitHub Repository
+
+🧪 Scan the compiled .exe with VirusTotal
+
+🧵 Compile it yourself using Visual Studio or g++
+
+“If you doubt the ritual, read the scrolls. If you trust the shrine, run the ceremony.”
