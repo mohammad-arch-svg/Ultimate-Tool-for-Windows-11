@@ -5,7 +5,7 @@
 
 ⚡ Overview
 
-ShrineTool v1.1 is a handcrafted C++ command-line utility designed to optimize and personalize Windows 11.
+ShrineTool v1.0 is a handcrafted C++ command-line utility designed to optimize and personalize Windows 11.
 Inspired by ChrisTitusTool, but reborn with manual control, stylized logic, and shrine-grade clarity.
 
 Unlike generic “all-in-one” scripts, ShrineTool focuses on transparency and user choice — every action is visible, intentional, and ceremonial.
