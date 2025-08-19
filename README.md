@@ -1,84 +1,36 @@
-🕯️ ShrineTool v1.0 — The Ultimate Windows 11 Ritual Suite
+# ShrineTool v2.0
 
-“Every tweak is a ritual. Every install, a ceremony. This is not automation—it’s intention.”
-— Mohammad, Creator of ShrineTool
+ShrineTool is a command-line utility designed to enhance Windows 11 by applying useful system tweaks, installing popular applications, and checking the Windows license status. It’s a simple tool for power users who want quick access to common tweaks and software installation.
 
-⚡ Overview
+---
 
-ShrineTool v1.0 is a handcrafted C++ command-line utility designed to optimize and personalize Windows 11.
-Inspired by ChrisTitusTool, but reborn with manual control, stylized logic, and shrine-grade clarity.
+## Features in v2.0
 
-Unlike generic “all-in-one” scripts, ShrineTool focuses on transparency and user choice — every action is visible, intentional, and ceremonial.
+- Prompt to create a **system restore point** before making changes.
+- Tweaks to:
+  - Disable GPS tracking
+  - Disable telemetry
+  - Disable Bing search suggestions
+- Install popular apps using `winget`:
+  - Google Chrome, Visual Studio Code, 7-Zip, VLC, Brave, Visual Studio 2022, Notepad++, Spotify, Git, Mozilla Firefox, Python, OBS Studio, Discord
+- Check Windows license status.
+- About section with ASCII art and pause to keep window open.
+- Prompts to ensure running as Administrator and testing on a virtual machine.
 
-🧰 Features
-🔧 Tweaks Menu
+---
 
-Disable GPS tracking
+## How to Use
 
-Disable telemetry
+1. Compile the source code with a C++ compiler (Visual Studio recommended).
+2. Run the executable as Administrator.
+3. Follow on-screen instructions:
+   - Choose to create a restore point.
+   - Select Tweaks, Install Apps, Check License Status, or About.
+   - Follow prompts for each section.
 
-Remove Bing from Windows search
+---
 
-Optional Explorer restart for full ritual effect
-
-📦 App Installer
-
-Install Google Chrome, Visual Studio Code, VLC Media Player, 7-Zip via winget
-
-Automatically accepts agreements and installs silently
-
-🔍 License Status Ritual
-
-Check your Windows activation status (slmgr /xpr)
-
-No piracy, no cracks — pure visibility
-
-🧾 About Section
-
-ASCII-branded homage to the creator
-
-Purpose, gratitude, and versioning
-
-🖥️ Usage
-
-⚠️ Run as Administrator
-ShrineTool performs system-level rituals that require elevated permissions.
-
-Compile the source code using a C++ compiler (MSVC recommended).
-
-Run the executable:
-
-./ShrineTool.exe
-
-🛡️ Is ShrineTool Safe?
-
-✅ Yes. ShrineTool is open-source, transparent, and built with care. Every tweak is visible in the source — no obfuscation, no hidden binaries.
-
-⚠️ Why SmartScreen or Defender Might Warn You
-Unsigned tools that:
-
-Modify system settings (telemetry, Bing, GPS)
-
-Use PowerShell commands
-
-Are new and not yet reputation-established
-
-…will often trigger Windows security heuristics. These are false positives, not real threats.
-
-✅ How to Verify ShrineTool
-
-🔍 Inspect the source: GitHub Repository
-
-🧪 Scan the compiled .exe with VirusTotal
-
-🧵 Compile it yourself using Visual Studio or g++
-
-✨ Closing Words
-
-“If you doubt the ritual, read the scrolls.
-If you trust the shrine, run the ceremony.”
-
-## 📜 Source Code (C++)
+## Source Code
 
 ```cpp
 #include <iostream>
@@ -87,13 +39,14 @@ If you trust the shrine, run the ceremony.”
 using namespace std;
 
 int main() {
+
     int choose = 0;
     int tweaks = 0;
     int install_app = 0;
     int About = 0;
 
     cout << "==========================================" << endl;
-    cout << "        ShrineTool v1.1 — Windows 11      " << endl;
+    cout << "        ShrineTool v2.0 — Windows 11      " << endl;
     cout << "==========================================" << endl;
     cout << endl;
     cout << "[1] Tweaks" << endl;
@@ -103,11 +56,26 @@ int main() {
     cout << "[4] About" << endl;
     cout << "==================" << endl;
     cout << endl;
-    cout << "Please run as Administrator. Choose from 1 to 4:" << endl;
+    char restore;
+    cout << "Before we get started let's make restore point do you  want to make restore point (y/n):" << endl;
+    cin >> restore;
+
+    if (restore == 'y' || restore == 'Y') {
+        cout << "making restore point..." << endl;
+        system("powershell -Command \"Checkpoint-Computer -Description 'ShrineTool Restore Point' -RestorePointType 'MODIFY_SETTINGS'\"");
+        cout << "==================================" << endl;
+        cout << "Done" << endl;
+        cout << "==================================" << endl;
+    }
+    else if (restore == 'n' || restore == 'N') {
+        cout << "Aborted. please make restore point first if something goes wrong" << endl;
+    }
+    cout << "Please run as Administrator. Choose from (1 to 4):" << endl;
     cin >> choose;
 
     switch (choose) {
     case 1:
+        char w;
         cout << "=================" << endl;
         cout << "Welcome to Tweaks" << endl;
         cout << "=================" << endl;
@@ -116,6 +84,17 @@ int main() {
         cout << "[2] Disable telemetry" << endl;
         cout << "[3] Disable Bing from search" << endl;
         cout << endl;
+        cout << "NOTICE: This will modify system settings. Make sure you have created a restore point. Do you want to continue? (y/n): ";
+        cin >> w;
+
+        if (w == 'y' || w == 'Y') {
+            cout << endl;
+        }
+        else if (w == 'n' || w == 'N') {
+            cout << "Aborted." << endl;
+            system("pause");
+            break;
+        }
         cout << "Choose from 1 to 3:" << endl;
         cin >> tweaks;
 
@@ -158,8 +137,17 @@ int main() {
         cout << "[2] Visual Studio Code" << endl;
         cout << "[3] 7-Zip" << endl;
         cout << "[4] VLC Media Player" << endl;
+        cout << "[5] Brave" << endl;
+        cout << "[6] Visual Studio 2022" << endl;
+        cout << "[7] Notepad++" << endl;
+        cout << "[8] Spotify" << endl;
+        cout << "[9] Git" << endl;
+        cout << "[10] Mozilla Firefox" << endl;
+        cout << "[11] Python" << endl;
+        cout << "[12] OBS Studio" << endl;
+        cout << "[13] Discord" << endl;
         cout << endl;
-        cout << "Choose an app to install (1-4): " << endl;
+        cout << "Choose an app to install (1-13): " << endl;
         cin >> install_app;
 
         if (install_app == 1) {
@@ -178,6 +166,46 @@ int main() {
             cout << "Installing VLC Media Player..." << endl;
             system("powershell -Command \"winget install --id VideoLAN.VLC -e --accept-package-agreements --accept-source-agreements\"");
         }
+        else if (install_app == 5) {
+            cout << "Installing Brave Browser..." << endl;
+            system("powershell -Command \"winget install --id Brave.BraveBrowser -e --accept-package-agreements --accept-source-agreements\"");
+        }
+        else if (install_app == 6) {
+            cout << "Installing Visual Studio 2022..." << endl;
+            system("powershell -Command \"winget install --id Microsoft.VisualStudio.2022.Community -e --accept-package-agreements --accept-source-agreements\"");
+        }
+        else if (install_app == 7) {
+            cout << "Installing Notepad++..." << endl;
+            system("powershell -Command \"winget install --id Notepad++.Notepad++ -e --accept-package-agreements --accept-source-agreements\"");
+        }
+        else if (install_app == 8) {
+            cout << "Installing Spotify..." << endl;
+            system("powershell -Command \"winget install --id Spotify.Spotify -e --accept-package-agreements --accept-source-agreements\"");
+        }
+        else if (install_app == 9) {
+            cout << "Installing Git..." << endl;
+            system("powershell -Command \"winget install --id Git.Git -e --accept-package-agreements --accept-source-agreements\"");
+        }
+        else if (install_app == 10) {
+            cout << "Installing Mozilla Firefox..." << endl;
+            system("powershell -Command \"winget install --id Mozilla.Firefox -e --accept-package-agreements --accept-source-agreements\"");
+        }
+        else if (install_app == 11) {
+            cout << "Installing Python..." << endl;
+            system("powershell -Command \"winget install --id Python.Python.3 -e --accept-package-agreements --accept-source-agreements\"");
+        }
+        else if (install_app == 12) {
+            cout << "Installing OBS Studio..." << endl;
+            system("powershell -Command \"winget install --id OBSProject.OBSStudio -e --accept-package-agreements --accept-source-agreements\"");
+        }
+        else if (install_app == 13) {
+            cout << "Installing Discord..." << endl;
+            system("powershell -Command \"winget install --id Discord.Discord -e --accept-package-agreements --accept-source-agreements\"");
+        }
+        else {
+            cout << "Invalid choice." << endl;
+        }
+
         cout << "Success." << endl;
         break;
 
@@ -194,16 +222,14 @@ int main() {
   |  __/ (_) | | |_| | |_) | | | | \__ \
   |_|   \___/|_|\__,_|_.__/|_|_| |_|___/
 )" << endl;
-        int i;
         cout << "This Tool Made by Mohammad" << endl;
         cout << "Purpose: To make Windows 11 better" << endl;
         cout << "Thanks to everyone using ShrineTool" << endl;
-        cout << "Version 1.1 (Safe Edition)" << endl;
-        cin >> i;
+        cout << "Version 2.0" << endl;
+        system("pause");
+        cout << "Press any key to continue..." << endl;
         break;
     }
 
     return 0;
 }
-
-
